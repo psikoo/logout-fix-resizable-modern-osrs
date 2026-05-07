@@ -16,9 +16,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 @Slf4j
-@PluginDescriptor(
-	name = "Logout Fix Resizable Modern"
-)
+@PluginDescriptor(name = "Logout Fix Resizable Modern")
 public class LogoutFixResizableModernPlugin extends Plugin
 {
 	private Widget newStone;
@@ -33,7 +31,6 @@ public class LogoutFixResizableModernPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		log.debug("LogoutFixResizableModern started");
 		clientThread.invokeLater(() -> updateUIComponents());
 	}
 
@@ -46,11 +43,10 @@ public class LogoutFixResizableModernPlugin extends Plugin
 		Widget stoneSource = client.getWidget(InterfaceID.ToplevelPreEoc.STONE10);
 		Widget iconSource = client.getWidget(InterfaceID.ToplevelPreEoc.ICON10);
 		if (sideStatic == null || stoneSource == null || iconSource == null) return;
-		// Hide X button
+		// Show the X button
 		sideStatic.deleteAllChildren();
 		stoneSource.setHidden(false);
 		iconSource.setHidden(false);
-		log.debug("LogoutFixResizableModern stopped");
 	}
 
 	@Subscribe
@@ -65,13 +61,15 @@ public class LogoutFixResizableModernPlugin extends Plugin
 	@Subscribe
 	public void onScriptPostFired(ScriptPostFired event)
 	{
+		// Open/change/close side tab events
 		if (event.getScriptId() == 902 || event.getScriptId() == 914)
 		{
-			// Update the logout stone
+			// Update the logout stone sprite
 			updateStoneSprite();
 			// Prevent the X button from showing up again
 			Widget stoneSource = client.getWidget(InterfaceID.ToplevelPreEoc.STONE10);
 			Widget iconSource = client.getWidget(InterfaceID.ToplevelPreEoc.ICON10);
+			if (stoneSource == null || iconSource == null) return;
 			stoneSource.setHidden(true);
 			iconSource.setHidden(true);
 		}
@@ -88,8 +86,6 @@ public class LogoutFixResizableModernPlugin extends Plugin
 		// Hide X button
 		stoneSource.setHidden(true);
 		iconSource.setHidden(true);
-		// Prevent duplicate logout buttons
-		if (sideStatic.getChildren() != null && sideStatic.getChildren().length > 0) return;
 		// Create new widgets
 		newStone = sideStatic.createChild(-1, stoneSource.getType());
 		newIcon = sideStatic.createChild(-1, iconSource.getType());
