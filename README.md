@@ -14,5 +14,8 @@ View of the side panel while the plugin is on:
  - Compatible with skins:
 <img width="244" height="140" alt="image" src="https://github.com/user-attachments/assets/2023fac8-608a-4d2f-b5f7-2de5ec30f77e" />
 
+ - Option to reorder the buttons to match other layouts:
+<img width="472" height="634" alt="image" src="https://github.com/user-attachments/assets/793287fa-c52c-46d1-b65c-c01c01fe92e5" />
+
  - Compatible with full screen resizable modern:
 <img width="469" height="177" alt="image" src="https://github.com/user-attachments/assets/28a48d69-5989-4872-908c-55659079a79a" />
