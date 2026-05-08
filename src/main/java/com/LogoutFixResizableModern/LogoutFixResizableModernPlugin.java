@@ -2,6 +2,7 @@ package com.LogoutFixResizableModern;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,8 @@ import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.gameval.SpriteID;
+import net.runelite.api.ScriptID;
+
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -98,9 +101,9 @@ public class LogoutFixResizableModernPlugin extends Plugin
 			setHiddenAllStonesAndIcons(true);
 		}
 		// Change menu inside side menu
-		if (event.getScriptId() == 903) 
-		{
-			stopPlugin();
+		//                                    friends, ignore, grouping, sailing, cc,   clan
+		Set<Integer> ICON_CHANGE_IDS = Set.of(123,     127,    432,      489,     1656, 4395);
+		if (ICON_CHANGE_IDS.contains(event.getScriptId())) {
 			clientThread.invokeLater(() -> startPlugin());
 		}
 	}
