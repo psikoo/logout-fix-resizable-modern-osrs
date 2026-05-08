@@ -97,6 +97,12 @@ public class LogoutFixResizableModernPlugin extends Plugin
 			// Prevent the old stones and icons from showing up
 			setHiddenAllStonesAndIcons(true);
 		}
+		// Change menu inside side menu
+		if (event.getScriptId() == 903) 
+		{
+			stopPlugin();
+			clientThread.invokeLater(() -> startPlugin());
+		}
 	}
 
 	private void startPlugin() 
