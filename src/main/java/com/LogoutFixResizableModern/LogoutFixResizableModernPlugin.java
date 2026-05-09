@@ -16,7 +16,6 @@ import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.gameval.SpriteID;
-import net.runelite.api.ScriptID;
 
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
@@ -92,12 +91,16 @@ public class LogoutFixResizableModernPlugin extends Plugin
 	@Subscribe
 	public void onScriptPostFired(ScriptPostFired event)
 	{
+		// Prevent the old stones and icons from showing up
+		if (event.getScriptId() == 903)
+		{
+			setHiddenAllStonesAndIcons(true);
+		}
+		// Update the logout stone sprite
 		// Open/change/close side tab events (905 = fkey)
 		if (event.getScriptId() == 902 || event.getScriptId() == 905 || event.getScriptId() == 914)
 		{
-			// Update the logout stone sprite
 			updateStoneSprite();
-			// Prevent the old stones and icons from showing up
 			setHiddenAllStonesAndIcons(true);
 		}
 		// Change menu inside side menu
