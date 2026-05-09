@@ -108,7 +108,11 @@ public class LogoutFixResizableModernPlugin extends Plugin
 		//                                    friends, ignore, grouping, sailing, cc,   clan
 		Set<Integer> ICON_CHANGE_IDS = Set.of(123,     127,    432,      489,     1656, 4395);
 		if (ICON_CHANGE_IDS.contains(event.getScriptId())) {
-			clientThread.invokeLater(() -> startPlugin());
+			// Prevent showing the icons when the bank is open
+			if (client.getWidget(InterfaceID.Bankmain.INFINITE) == null) 
+			{
+				clientThread.invokeLater(() -> startPlugin());
+			}
 		}
 	}
 
