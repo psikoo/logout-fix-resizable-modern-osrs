@@ -226,6 +226,11 @@ public class LogoutFixResizableModernPlugin extends Plugin
 	{
 		for (Widget stone : stones.values()) stone.setHidden(hidden);
 		for (Widget icon : icons.values()) icon.setHidden(hidden);
+		if (config.keepXButton())
+		{
+			stones.get("10").setHidden(false);
+			icons.get("10").setHidden(false);
+		}
 	}
 
 	private void nSetHiddenAllStonesAndIcons(boolean hidden) 
