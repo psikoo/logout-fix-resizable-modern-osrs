@@ -91,8 +91,9 @@ public class LogoutFixResizableModernPlugin extends Plugin
 	@Subscribe
 	public void onScriptPostFired(ScriptPostFired event)
 	{
-		// Prevent the old stones and icons from showing up
-		if (event.getScriptId() == 903)
+		// TOPLEVEL_SUBCHANGE and TOPLEVEL_SIDE_CUSTOMIZE according to 
+		// https://github.com/its-cue/compact-orbs/blob/378367f8338e696eba681b8e549dcf1db23bf103/src/main/java/com/compactorbs/CompactOrbsPlugin.java#L169
+		if (event.getScriptId() == 908 || event.getScriptId() == 919)
 		{
 			setHiddenAllStonesAndIcons(true);
 		}
